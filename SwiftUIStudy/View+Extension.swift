@@ -1,23 +1,24 @@
 //
-//  SwiftUIStudyApp.swift
+//  View+Extension.swift
 //  SwiftUIStudy
 //
-//  Created by dy on 2022/9/20.
+//  Created by dy on 2022/9/21.
 //
 
 import SwiftUI
 
-@main
-struct SwiftUIStudyApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView(noteItems: readData())
+extension View {
+    func saveData(noteItems: [NoteItem]) {
+        let saveNoteItems = noteItems.map { SaveNoteItem(id: $0.id, writeTime: $0.writeTime, title: $0.title, content: $0.content)
+        }
+        
+        let data = try? JSONEncoder().encode(saveNoteItems)
+        if let data {
+            UserDefaults.standard.setValue(data, forKey: "saveNoteItems")
         }
     }
-}
-
-extension SwiftUIStudyApp {
-    private func readData() -> [NoteItem] {
+    
+    func readData() -> [NoteItem] {
         let data = UserDefaults.standard.value(forKey: "saveNoteItems") as? Data
         
         if let data {
@@ -35,3 +36,4 @@ extension SwiftUIStudyApp {
         }
     }
 }
+

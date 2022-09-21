@@ -7,7 +7,21 @@
 
 import Foundation
 
-class NoteItem: ObservableObject, Identifiable, Comparable {
+class NoteItem: ObservableObject, Identifiable {
+    var id = UUID()
+    
+    @Published var writeTime: String = ""
+    @Published var title: String = ""
+    @Published var content: String = ""
+    
+    init(id: UUID = UUID(), writeTime: String, title: String, content: String) {
+        self.writeTime = writeTime
+        self.title = title
+        self.content = content
+    }
+}
+
+extension NoteItem: Comparable {
     static func == (lhs: NoteItem, rhs: NoteItem) -> Bool {
         lhs.writeTime == rhs.writeTime
         && lhs.title == rhs.title
@@ -18,16 +32,14 @@ class NoteItem: ObservableObject, Identifiable, Comparable {
     static func < (lhs: NoteItem, rhs: NoteItem) -> Bool {
         lhs.writeTime < rhs.writeTime
     }
+}
+
+struct SaveNoteItem: Codable {
+    let id: UUID
     
-    var id = UUID()
+    let writeTime: String
     
-    @Published var writeTime: String = ""
-    @Published var title: String = ""
-    @Published var content: String = ""
+    let title: String
     
-    init(writeTime: String, title: String, content: String) {
-        self.writeTime = writeTime
-        self.title = title
-        self.content = content
-    }
+    let content: String
 }

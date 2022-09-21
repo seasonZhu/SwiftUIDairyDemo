@@ -76,6 +76,7 @@ struct EditNoteView: View {
                     noteItems.insert(deleteItem, at: 0)
                 }
             }
+            saveData(noteItems: noteItems)
             
         } label: {
             Text("完成")

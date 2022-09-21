@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     /// 数组是不能用@StateObject修饰的,ObservableObject协议只能由class遵守
-    @State var noteItems: [NoteItem] = [NoteItem(writeTime: "2022.09.17-00:00:00", title: "第一条笔记", content: "快来使用念头笔记记录生活吧～快来使用念头笔记记录生活吧～")]
+    @State var noteItems: [NoteItem]
     
     @State var searchText = ""
     
@@ -100,6 +100,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(noteItems: [])
     }
 }

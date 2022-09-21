@@ -67,9 +67,8 @@ struct NewNoteView: View {
         Button {
             let newNoteItem = NoteItem(writeTime: getCurrentTime, title: title, content: content)
             noteItems.insert(newNoteItem, at: 0)
-            let n = noteItems
-            print(n)
             self.showNewNoteView = false
+            saveData(noteItems: noteItems)
         } label: {
             Text("完成")
                 .font(.system(size: 17))

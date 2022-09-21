@@ -7,19 +7,6 @@
 
 import SwiftUI
 
-struct NoteListView: View {
-    @Binding var noteItems: [NoteItem]
-
-    var body: some View {
-        List {
-            ForEach($noteItems) { noteItem in
-                NoteListRow(noteItem: noteItem, noteItems: $noteItems)
-            }
-        }
-        .listStyle(InsetListStyle())
-    }
-}
-
 struct NoteListRow: View {
     @Binding var noteItem: NoteItem
     

@@ -13,7 +13,7 @@ struct NoteListView: View {
     var body: some View {
         List {
             ForEach($noteItems) { noteItem in
-                NoteListRow(noteItem: noteItem)
+                NoteListRow(noteItem: noteItem, noteItems: $noteItems)
             }
         }
         .listStyle(InsetListStyle())
@@ -22,6 +22,8 @@ struct NoteListView: View {
 
 struct NoteListRow: View {
     @Binding var noteItem: NoteItem
+    
+    @Binding var noteItems: [NoteItem]
     
     @State var showEditNoteView = false
     
@@ -52,7 +54,7 @@ struct NoteListRow: View {
                     .font(.system(size: 23))
             }
         }.sheet(isPresented: $showEditNoteView) {
-            EditNoteView(noteItem: $noteItem, showEditNoteView: $showEditNoteView)
+            EditNoteView(noteItem: $noteItem, showEditNoteView: $showEditNoteView, noteItems: $noteItems)
         }
     }
 }

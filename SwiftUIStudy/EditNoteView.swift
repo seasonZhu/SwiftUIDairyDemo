@@ -15,6 +15,8 @@ struct EditNoteView: View {
     
     @Binding var showEditNoteView: Bool
     
+    @Binding var noteItems: [NoteItem]
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -64,6 +66,17 @@ struct EditNoteView: View {
         Button {
             self.showEditNoteView = false
             self.noteItem.writeTime = getCurrentTime
+            
+            let index = noteItems.firstIndex { $0.id == self.noteItem.id }
+            if let index {
+                let deleteItem = noteItems.remove(at: index)
+                if noteItems.isEmpty {
+                    noteItems.append(deleteItem)
+                } else {
+                    noteItems.insert(deleteItem, at: 0)
+                }
+            }
+            
         } label: {
             Text("完成")
                 .font(.system(size: 17))

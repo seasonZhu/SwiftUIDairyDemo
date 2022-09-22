@@ -16,8 +16,10 @@ struct NoteView: View {
     @Binding var showNoteView: Bool
     
     @Binding var noteItems: [NoteItem]
+        
+    @State var showToast = false
     
-    @State var text: String = ""
+    @State var showToastMessage: String = ""
     
     var body: some View {
         NavigationView {
@@ -27,8 +29,9 @@ struct NoteView: View {
                     Divider()
                     contentField
                 }
-            .navigationBarTitle(noteType.title, displayMode: .inline)
+                .navigationBarTitle(noteType.title, displayMode: .inline)
                 .navigationBarItems(leading: closeButton, trailing: saveButton)
+                .toast(present: $showToast, message: $showToastMessage)
         }
     }
     
@@ -46,6 +49,10 @@ struct NoteView: View {
     var contentField: some View {
         ZStack(alignment: .topLeading) {
             TextEditor(text: noteType.noteItem.content)
+                .onChange(of: noteType.value.content, perform: { newValue in
+                    print("content:\(noteType.value.content)")
+                    print("newValue:\(newValue)")
+                })
                 .font(.system(size: 17))
                 .padding()
             
@@ -73,15 +80,28 @@ struct NoteView: View {
     
     var saveButton: some View {
         Button {
-            self.showNoteView = false
-            
             let noteItem = noteType.noteItem.wrappedValue
+            
+            if noteItem.title.isEmpty {
+                showToast = true
+                showToastMessage = "请输入标题"
+                return
+            }
+            
+            if noteItem.content.isEmpty {
+                
+                showToast = true
+                showToastMessage = "请输入内容"
+                return
+            }
+            
+            self.showNoteView = false
             
             switch noteType {
             case .new:
                 noteItem.writeTime = getCurrentTime
                 noteItems.insert(noteItem, at: 0)
-            case .edit(_):
+            case .edit:
                 let index = noteItems.firstIndex { $0.id == noteItem.id }
                 if let index {
                     

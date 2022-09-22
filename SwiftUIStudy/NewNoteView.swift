@@ -14,6 +14,7 @@ struct NewNoteView: View {
     @Binding var noteItems: [NoteItem]
     
     @State var title: String
+    
     @State var isEditing = false
     
     @State var content: String

@@ -11,7 +11,9 @@ class NoteItem: ObservableObject, Identifiable {
     var id = UUID()
     
     @Published var writeTime: String = ""
+    
     @Published var title: String = ""
+    
     @Published var content: String = ""
     
     init(id: UUID = UUID(), writeTime: String, title: String, content: String) {

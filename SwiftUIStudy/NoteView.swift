@@ -58,7 +58,7 @@ struct NoteView: View {
                 .font(.system(size: 17))
                 .padding()
             
-            let value = noteType.noteItem
+            //let value = noteType.noteItem
             
             if noteType.value.content.isEmpty {
                 Text("请输入内容")

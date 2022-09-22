@@ -24,6 +24,7 @@ struct NoteListRow: View {
                 Text(noteItem.title)
                     .font(.system(size: 17))
                     .foregroundColor(.black)
+                
                 Text(noteItem.content)
                     .font(.system(size: 14))
                     .foregroundColor(.gray)

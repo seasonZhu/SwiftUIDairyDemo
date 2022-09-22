@@ -41,12 +41,12 @@ extension TextField {
     
     /// 添加关闭键盘工具栏
     /// - Returns: 返回
-    func makeToolBar() -> some View {
+    func makeToolBar(callback: (() -> Void)? = nil) -> some View {
         return toolbar(content: {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 Button {
-                    endEditing()
+                    endEditing(callback: callback)
                 } label: {
                     Text("完成")
                 }
@@ -55,13 +55,14 @@ extension TextField {
     }
 }
 
+/// 这个没有用,TextEditor的内部还是用TextField封装的
 extension TextEditor {
-    func makeToolBar() -> some View {
+    func makeToolBar(callback: (() -> Void)? = nil) -> some View {
         return toolbar(content: {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
                 Button {
-                    endEditing()
+                    endEditing(callback: callback)
                 } label: {
                     Text("完成")
                 }
@@ -71,7 +72,8 @@ extension TextEditor {
 }
 
 extension View {
-    func endEditing() {
+    func endEditing(callback: (() -> Void)? = nil) {
+        callback?()
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

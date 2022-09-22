@@ -33,7 +33,7 @@ struct NewNoteView: View {
     
     var titleField: some View {
         TextField("请输入标题", text: $title) { editingChanged in
-            self.isEditing = editingChanged
+            isEditing = editingChanged
         } onCommit: {
             
         }
@@ -55,7 +55,7 @@ struct NewNoteView: View {
     
     var closeButton: some View {
         Button {
-            self.showNewNoteView = false
+            showNewNoteView = false
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .font(.system(size: 17))
@@ -67,7 +67,7 @@ struct NewNoteView: View {
         Button {
             let newNoteItem = NoteItem(writeTime: getCurrentTime, title: title, content: content)
             noteItems.insert(newNoteItem, at: 0)
-            self.showNewNoteView = false
+            showNewNoteView = false
             saveData(noteItems: noteItems)
         } label: {
             Text("完成")

@@ -87,7 +87,7 @@ struct ContentView: View {
                     
                     if !searchText.isEmpty {
                         Button {
-                            self.searchText = ""
+                            searchText = ""
                         } label: {
                             Image(systemName: "multiply.circle.fill")
                                 .foregroundColor(.gray)

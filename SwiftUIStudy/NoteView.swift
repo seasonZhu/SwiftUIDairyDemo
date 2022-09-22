@@ -39,7 +39,7 @@ struct NoteView: View {
 
         
         TextField("请输入标题", text: noteType.noteItem.title) { editingChanged in
-            self.isEditing = editingChanged
+            isEditing = editingChanged
         } onCommit: {
             
         }
@@ -50,6 +50,7 @@ struct NoteView: View {
         ZStack(alignment: .topLeading) {
             TextEditor(text: noteType.noteItem.content)
                 .onChange(of: noteType.value.content, perform: { newValue in
+                    /// 这个是在这个页面消失了才打印,不好办呀
                     print("content:\(noteType.value.content)")
                     print("newValue:\(newValue)")
                 })
@@ -70,7 +71,7 @@ struct NoteView: View {
     
     var closeButton: some View {
         Button {
-            self.showNoteView = false
+            showNoteView = false
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .font(.system(size: 17))
@@ -95,7 +96,7 @@ struct NoteView: View {
                 return
             }
             
-            self.showNoteView = false
+            showNoteView = false
             
             switch noteType {
             case .new:

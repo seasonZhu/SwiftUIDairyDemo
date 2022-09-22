@@ -32,7 +32,7 @@ struct EditNoteView: View {
     
     var titleField: some View {
         TextField("请输入标题", text: $noteItem.title) { editingChanged in
-            self.isEditing = editingChanged
+            isEditing = editingChanged
         } onCommit: {
             
         }
@@ -54,7 +54,7 @@ struct EditNoteView: View {
     
     var closeButton: some View {
         Button {
-            self.showEditNoteView = false
+            showEditNoteView = false
         } label: {
             Image(systemName: "xmark.circle.fill")
                 .font(.system(size: 17))
@@ -64,10 +64,10 @@ struct EditNoteView: View {
     
     var saveButton: some View {
         Button {
-            self.showEditNoteView = false
-            self.noteItem.writeTime = getCurrentTime
+            showEditNoteView = false
+            noteItem.writeTime = getCurrentTime
             
-            let index = noteItems.firstIndex { $0.id == self.noteItem.id }
+            let index = noteItems.firstIndex { $0.id == noteItem.id }
             if let index {
                 let deleteItem = noteItems.remove(at: index)
                 if noteItems.isEmpty {

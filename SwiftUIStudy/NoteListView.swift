@@ -14,6 +14,19 @@ struct NoteListView: View {
         List {
             ForEach($noteItems) { noteItem in
                 NoteListRow(noteItem: noteItem, noteItems: $noteItems)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button {
+                            let offset = noteItems.firstIndex(of: noteItem.wrappedValue)
+                            if let offset {
+                                noteItems.remove(at: offset)
+                                saveData(noteItems: noteItems)
+                            }
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                        .tint(.red)
+                        
+                    }
             }
         }
         .listStyle(InsetListStyle())

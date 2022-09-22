@@ -34,6 +34,7 @@ extension NoteItem: Comparable {
     }
 }
 
+/// 本地化存储的模型
 struct SaveNoteItem: Codable {
     let id: UUID
     

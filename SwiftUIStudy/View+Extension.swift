@@ -37,3 +37,41 @@ extension View {
     }
 }
 
+extension TextField {
+    
+    /// 添加关闭键盘工具栏
+    /// - Returns: 返回
+    func makeToolBar() -> some View {
+        return toolbar(content: {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    endEditing()
+                } label: {
+                    Text("完成")
+                }
+            }
+        })
+    }
+}
+
+extension TextEditor {
+    func makeToolBar() -> some View {
+        return toolbar(content: {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    endEditing()
+                } label: {
+                    Text("完成")
+                }
+            }
+        })
+    }
+}
+
+extension View {
+    func endEditing() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

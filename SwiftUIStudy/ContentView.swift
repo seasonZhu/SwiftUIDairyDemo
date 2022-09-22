@@ -33,7 +33,8 @@ struct ContentView: View {
                 
             }
             .navigationBarTitle("一个笔记", displayMode: .inline)
-        }.sheet(isPresented: $showNewNoteView) {
+        }
+        .sheet(isPresented: $showNewNoteView) {
             //NewNoteView(showNewNoteView: $showNewNoteView, noteItems: $noteItems, title: "", content: "")
             NoteView(noteType: .new(new), showNoteView: $showNewNoteView, noteItems: $noteItems)
         }
@@ -74,6 +75,7 @@ struct ContentView: View {
     
     var searchView: some View {
         TextField("搜索内容", text: $searchText)
+            .makeToolBar()
             .padding(7)
             .padding(.horizontal, 25)
             .background(Color(.systemGray6))

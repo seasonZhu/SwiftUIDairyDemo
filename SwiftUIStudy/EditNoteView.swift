@@ -36,6 +36,7 @@ struct EditNoteView: View {
         } onCommit: {
             
         }
+        .makeToolBar()
         .padding()
     }
     

@@ -27,7 +27,6 @@ struct NoteListRow: View {
                 Text(noteItem.content)
                     .font(.system(size: 14))
                     .foregroundColor(.gray)
-                    .lineLimit(1)
                     .multilineTextAlignment(.leading)
             }
             Spacer()

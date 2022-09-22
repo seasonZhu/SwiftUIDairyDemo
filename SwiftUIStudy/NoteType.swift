@@ -5,10 +5,10 @@
 //  Created by dy on 2022/9/21.
 //
 
-import Foundation
+import SwiftUI
 
 enum NoteType {
-    case new
+    case new(NoteItem)
     case edit(NoteItem)
 }
 
@@ -22,10 +22,14 @@ extension NoteType {
         }
     }
     
-    var noteItem: NoteItem {
+    var noteItem: Binding<NoteItem> {
+        .constant(value)
+    }
+    
+    var value: NoteItem {
         switch self {
-        case .new:
-            return NoteItem(writeTime: "", title: "", content: "")
+        case .new(let noteItem):
+            return noteItem
         case .edit(let noteItem):
             return noteItem
         }

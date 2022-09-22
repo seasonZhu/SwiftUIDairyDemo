@@ -11,6 +11,8 @@ struct ContentView: View {
     /// 数组是不能用@StateObject修饰的,ObservableObject协议只能由class遵守
     @State var noteItems: [NoteItem]
     
+    @State var new = NoteItem(writeTime: "", title: "", content: "")
+    
     @State var searchText = ""
     
     @State var showNewNoteView = false
@@ -32,7 +34,8 @@ struct ContentView: View {
             }
             .navigationBarTitle("一个笔记", displayMode: .inline)
         }.sheet(isPresented: $showNewNoteView) {
-            NewNoteView(showNewNoteView: $showNewNoteView, noteItems: $noteItems, title: "", content: "")
+            //NewNoteView(showNewNoteView: $showNewNoteView, noteItems: $noteItems, title: "", content: "")
+            NoteView(noteType: .new(new), showNoteView: $showNewNoteView, noteItems: $noteItems)
         }
     }
     
@@ -56,6 +59,7 @@ struct ContentView: View {
                 Button {
                     print("点击了添加按钮")
                     showNewNoteView = true
+                    new = NoteItem(writeTime: "", title: "", content: "")
                 } label: {
                     Image(systemName: "plus.circle.fill")
                                         .font(.system(size: 48))

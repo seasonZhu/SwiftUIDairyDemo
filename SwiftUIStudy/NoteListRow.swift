@@ -41,7 +41,8 @@ struct NoteListRow: View {
                     .font(.system(size: 23))
             }
         }.sheet(isPresented: $showEditNoteView) {
-            EditNoteView(noteItem: $noteItem, showEditNoteView: $showEditNoteView, noteItems: $noteItems)
+            //EditNoteView(noteItem: $noteItem, showEditNoteView: $showEditNoteView, noteItems: $noteItems)
+            NoteView(noteType: .edit(noteItem), showNoteView: $showEditNoteView, noteItems: $noteItems)
         }
     }
 }

@@ -17,11 +17,17 @@ struct ContentView: View {
     
     @State var showNewNoteView = false
     
+    @State var isEdit = false
+    
+    @State var showToast = false
+    
+    @State var showToastMessage: String = ""
+    
     var body: some View {
         NavigationView {
             ZStack {
                 
-                if noteItems.isEmpty {
+                if noteItems.isEmpty && !isEdit {
                     noDataView
                 } else {
                     VStack {
@@ -33,6 +39,7 @@ struct ContentView: View {
                 
             }
             .navigationBarTitle("一个笔记", displayMode: .inline)
+            .toast(present: $showToast, message: $showToastMessage)
         }
         .sheet(isPresented: $showNewNoteView) {
             //NewNoteView(showNewNoteView: $showNewNoteView, noteItems: $noteItems, title: "", content: "")
@@ -76,6 +83,10 @@ struct ContentView: View {
     var searchView: some View {
         TextField("搜索内容", text: $searchText)
             .makeToolBar()
+            .keyboardType(.webSearch)
+            .onSubmit {
+                searchAction()
+            }
             .padding(7)
             .padding(.horizontal, 25)
             .background(Color(.systemGray6))
@@ -89,7 +100,7 @@ struct ContentView: View {
                     
                     if !searchText.isEmpty {
                         Button {
-                            searchText = ""
+                            clearSearch()
                         } label: {
                             Image(systemName: "multiply.circle.fill")
                                 .foregroundColor(.gray)
@@ -101,6 +112,34 @@ struct ContentView: View {
             }
             .padding(.horizontal, 10)
         
+    }
+}
+
+extension ContentView {
+    private func searchAction() {
+        if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            showToast = true
+            showToastMessage = "搜素关键词不能为空"
+            return
+        }
+        
+        isEdit = true
+        let search = noteItems.filter { item in
+            item.content.contains(searchText) || item.title.contains(searchText)
+        }
+        
+        if search.isEmpty {
+            showToast = true
+            showToastMessage = "没有搜索到相关日记"
+        } else {
+            noteItems = search
+        }
+    }
+    
+    private func clearSearch() {
+        searchText = ""
+        isEdit = false
+        noteItems = readData()
     }
 }
 

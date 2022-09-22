@@ -69,17 +69,12 @@
 		001DD4AD28D9A2B6005318AD /* SwiftUIStudy */ = {
 			isa = PBXGroup;
 			children = (
+				00B6DFD628DC653400669161 /* Extension */,
+				00B6DFD528DC652B00669161 /* Enum */,
+				00B6DFD428DC651600669161 /* Page */,
+				00B6DFD328DC650C00669161 /* View */,
+				00B6DFD228DC637600669161 /* Model */,
 				001DD4AE28D9A2B6005318AD /* SwiftUIStudyApp.swift */,
-				001DD4B028D9A2B6005318AD /* ContentView.swift */,
-				00F61E1C28D9B25A00A7DE1F /* Model.swift */,
-				0068ABBA28DAFDAC009B85EC /* NoteListView.swift */,
-				00F61E1E28D9B2E800A7DE1F /* NoteListRow.swift */,
-				00F61E2028D9B9AB00A7DE1F /* NewNoteView.swift */,
-				0068ABB428DABD50009B85EC /* EditNoteView.swift */,
-				0068ABBC28DAFE8A009B85EC /* NoteView.swift */,
-				0068ABB628DAF5D6009B85EC /* NoteType.swift */,
-				0068ABB828DAFB36009B85EC /* View+Extension.swift */,
-				00B6DFD028DC03D600669161 /* ToastView.swift */,
 				001DD4B228D9A2B7005318AD /* Assets.xcassets */,
 				001DD4B428D9A2B7005318AD /* Preview Content */,
 			);
@@ -92,6 +87,51 @@
 				001DD4B528D9A2B7005318AD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		00B6DFD228DC637600669161 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00F61E1C28D9B25A00A7DE1F /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		00B6DFD328DC650C00669161 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00B6DFD028DC03D600669161 /* ToastView.swift */,
+				00F61E1E28D9B2E800A7DE1F /* NoteListRow.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00B6DFD428DC651600669161 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				001DD4B028D9A2B6005318AD /* ContentView.swift */,
+				0068ABBA28DAFDAC009B85EC /* NoteListView.swift */,
+				0068ABBC28DAFE8A009B85EC /* NoteView.swift */,
+				00F61E2028D9B9AB00A7DE1F /* NewNoteView.swift */,
+				0068ABB428DABD50009B85EC /* EditNoteView.swift */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		00B6DFD528DC652B00669161 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				0068ABB628DAF5D6009B85EC /* NoteType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		00B6DFD628DC653400669161 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0068ABB828DAFB36009B85EC /* View+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
